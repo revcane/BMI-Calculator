@@ -12,10 +12,19 @@ double heightToInches(int feet, double inches)
     return (feet * 12.0) + inches;
 }
 
-// just a stub for now
+// calculates bmi using: (weight/ height^2) * 703
 double calculateBMI(double weightLbs, double heightInches)
 {
-    return 0.0;
+    if (weightLbs <= 0)
+    {
+        throw std::invalid_argument("Weight must be positive.");
+    }
+    if (heightInches <= 0)
+    {
+        throw std::invalid_argument("Height must be positive.");
+    }
+    double bmi = (weightLbs / (heightInches * heightInches)) * 703;
+    return std::round(bmi * 10) / 10; // round to 1 decimal place
 }
 
 // just a stub for now
