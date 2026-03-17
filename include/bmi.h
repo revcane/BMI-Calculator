@@ -3,7 +3,7 @@
 
 #include <string>
 
-double feetToInches(int feet, double inches);
+double heightToInches(int feet, double inches);
 
 double calculateBMI(double weightLbs, double heightInches);
 
