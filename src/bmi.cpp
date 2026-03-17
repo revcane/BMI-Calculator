@@ -27,10 +27,31 @@ double calculateBMI(double weightLbs, double heightInches)
     return std::round(bmi * 10) / 10; // round to 1 decimal place
 }
 
-// just a stub for now
+// returns BMI category based on standard BMI ranges
+// ------------------------------
+//   underweight: BMI < 18.5
+//   normal: 18.5 <= BMI <= 24.9
+//   overweight: 25.0 <= BMI <= 29.9
+//   obese: BMI >= 30.0
+// ------------------------------
 std::string getBMICategory(double bmi)
 {
-    return "";
+    if (bmi < 18.5)
+    {
+        return "Underweight";
+    }
+    else if (bmi <= 24.9)
+    {
+        return "Normal weight";
+    }
+    else if (bmi <= 29.9)
+    {
+        return "Overweight";
+    }
+    else
+    {
+        return "Obese";
+    }
 }
 
 // just a stub for now
