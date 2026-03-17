@@ -6,10 +6,16 @@ SRC_DIR  = src
 TEST_DIR = tests
 BUILD    = build
 
-.PHONY: tests clean run_tests
+.PHONY: app run tests tests_buggy clean run_tests run_tests_buggy
 
 $(BUILD):
 	mkdir -p $(BUILD)
+
+app: $(BUILD) $(SRC_DIR)/bmi.cpp $(SRC_DIR)/main.cpp
+	$(CXX) $(CXXFLAGS) $(SRC_DIR)/bmi.cpp $(SRC_DIR)/main.cpp -o $(BUILD)/bmi_app
+
+run: app
+	./$(BUILD)/bmi_app
 
 tests: $(BUILD) $(SRC_DIR)/bmi.cpp $(TEST_DIR)/test_bmi.cpp
 	$(CXX) $(CXXFLAGS) $(SRC_DIR)/bmi.cpp $(TEST_DIR)/test_bmi.cpp -o $(BUILD)/test_runner $(GTEST)
