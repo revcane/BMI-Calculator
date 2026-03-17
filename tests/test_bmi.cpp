@@ -169,6 +169,48 @@ TEST(GetBMICategoryTest, highobese)
     EXPECT_EQ(getBMICategory(40.0), "Obese");
 }
 
+// computeBMI tests
+
+// tests 5'9" 100 lbs should return underweight
+TEST(ComputeBMITest, underweight)
+{
+    double bmi = computeBMI(5, 9.0, 100.0);
+    EXPECT_EQ(getBMICategory(bmi), "Underweight");
+}
+
+// tests 5'9" 155 lbs should return normal weight
+TEST(ComputeBMITest, normalweight)
+{
+    double bmi = computeBMI(5, 9.0, 155.0);
+    EXPECT_EQ(getBMICategory(bmi), "Normal weight");
+}
+
+// tests 5'6" 180 lbs should return overweight
+TEST(ComputeBMITest, overweight)
+{
+    double bmi = computeBMI(5, 6.0, 180.0);
+    EXPECT_EQ(getBMICategory(bmi), "Overweight");
+}
+
+// tests 5'6" 220 lbs should return obese
+TEST(ComputeBMITest, obese)
+{
+    double bmi = computeBMI(5, 6.0, 220.0);
+    EXPECT_EQ(getBMICategory(bmi), "Obese");
+}
+
+// expected to throw invalid argument error for negative feet
+TEST(ComputeBMITest, negativefeet)
+{
+    EXPECT_THROW(computeBMI(-1, 0.0, 150.0), std::invalid_argument);
+}
+
+// expected to throw invalid argument error for zero weight
+TEST(ComputeBMITest, zeroweight)
+{
+    EXPECT_THROW(computeBMI(5, 10.0, 0.0), std::invalid_argument);
+}
+
 int main(int argc, char **argv)
 {
     ::testing::InitGoogleTest(&argc, argv);
