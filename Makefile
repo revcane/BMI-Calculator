@@ -17,5 +17,11 @@ tests: $(BUILD) $(SRC_DIR)/bmi.cpp $(TEST_DIR)/test_bmi.cpp
 run_tests: tests
 	./$(BUILD)/test_runner
 
+tests_buggy: $(BUILD) $(SRC_DIR)/bmi_buggy.cpp $(TEST_DIR)/test_bmi.cpp
+	$(CXX) $(CXXFLAGS) $(SRC_DIR)/bmi_buggy.cpp $(TEST_DIR)/test_bmi.cpp -o $(BUILD)/test_runner_buggy $(GTEST)
+
+run_tests_buggy: tests_buggy
+	./$(BUILD)/test_runner_buggy
+
 clean:
 	rm -rf $(BUILD)
