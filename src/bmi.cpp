@@ -54,8 +54,9 @@ std::string getBMICategory(double bmi)
     }
 }
 
-// just a stub for now
+// using both helper functions, compute BMI using feet, inches, and weight, return bmi value
 double computeBMI(int feet, double inches, double weightLbs)
 {
-    return 0.0;
+    double totalInches = heightToInches(feet, inches);
+    return calculateBMI(weightLbs, totalInches);
 }
