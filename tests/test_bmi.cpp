@@ -44,6 +44,7 @@ TEST(HeightToInchesTest, negativeinches)
 }
 
 // calculateBMI tests
+
 // tests 150 lbs at 66 inches should return BMI of 24.2
 TEST(CalculateBMITest, KnownValue150lbs66in)
 {
@@ -80,6 +81,92 @@ TEST(CalculateBMITest, ZeroHeightThrows)
 TEST(CalculateBMITest, NegativeHeightThrows)
 {
     EXPECT_THROW(calculateBMI(150.0, -5.0), std::invalid_argument);
+}
+
+// getBMICategory tests
+// ------------------------------
+//   underweight: BMI < 18.5
+//   normal: 18.5 <= BMI <= 24.9
+//   overweight: 25.0 <= BMI <= 29.9
+//   obese: BMI >= 30.0
+// ------------------------------
+
+// tests BMI of 10.0 returns Underweight
+TEST(GetBMICategoryTest, lowright)
+{
+    EXPECT_EQ(getBMICategory(10.0), "Underweight");
+}
+
+// tests BMI of 18.4 (slightly below normal boundary) should return underweight
+TEST(GetBMICategoryTest, belownormal)
+{
+    EXPECT_EQ(getBMICategory(18.4), "Underweight");
+}
+
+// tests BMI of 18.5 (lower boundary of normal) should return normal
+TEST(GetBMICategoryTest, normallower)
+{
+    EXPECT_EQ(getBMICategory(18.5), "Normal weight");
+}
+
+// tests BMI of 18.6 (slightly above normal lower boundary) should return normal
+TEST(GetBMICategoryTest, abovenormallower)
+{
+    EXPECT_EQ(getBMICategory(18.6), "Normal weight");
+}
+
+// tests BMI of 22.0 (mid normal range) should return normal
+TEST(GetBMICategoryTest, midnormal)
+{
+    EXPECT_EQ(getBMICategory(22.0), "Normal weight");
+}
+
+// tests BMI of 24.9 (upper boundary of normal) should return normal
+TEST(GetBMICategoryTest, normalupper)
+{
+    EXPECT_EQ(getBMICategory(24.9), "Normal weight");
+}
+
+// tests BMI of 25.0 (lower boundary of overweight) should return overweight
+TEST(GetBMICategoryTest, overweightlower)
+{
+    EXPECT_EQ(getBMICategory(25.0), "Overweight");
+}
+
+// tests BMI of 25.1 (slightly above overweight lower boundary) should return overweight
+TEST(GetBMICategoryTest, aboveoverweightlower)
+{
+    EXPECT_EQ(getBMICategory(25.1), "Overweight");
+}
+
+// tests BMI of 27.5 (mid overweight range) should return overweight
+TEST(GetBMICategoryTest, midoverweight)
+{
+    EXPECT_EQ(getBMICategory(27.5), "Overweight");
+}
+
+// tests BMI of 29.9 (upper boundary of overweight) should return overweight
+TEST(GetBMICategoryTest, overweightupper)
+{
+    EXPECT_EQ(getBMICategory(29.9), "Overweight");
+}
+
+// tests BMI of 30.0 (lower boundary of obese) should return obese
+TEST(GetBMICategoryTest, obeselower)
+{
+    EXPECT_EQ(getBMICategory(30.0), "Obese");
+}
+
+// tests BMI of 30.1 (slightly above obese lower boundary) should return obese
+TEST(GetBMICategoryTest, aboveobeselower)
+{
+    EXPECT_EQ(getBMICategory(30.1), "Obese");
+}
+
+// tests BMI of 40.0 (high obese range) should return obese
+TEST(GetBMICategoryTest, highobese)
+{
+    EXPECT_EQ(getBMICategory(40.0), "Obese");
 }
 
 int main(int argc, char **argv)
