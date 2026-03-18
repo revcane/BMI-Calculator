@@ -6,6 +6,7 @@
 
 - **OS:** Windows 10 or Linux/macOS
 - **Compiler:** g++ with C++17 support
+- Google Test Suite for C++
 
 ## Usage
 
