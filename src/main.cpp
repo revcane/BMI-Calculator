@@ -55,5 +55,11 @@ int main()
         return 1;
     }
 
+    cout << "\nPress Enter to exit...";
+    cin.ignore();
+    cin.get();
+
+    return 0;
+
     return 0;
 }
